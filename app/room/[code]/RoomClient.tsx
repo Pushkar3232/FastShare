@@ -4,14 +4,13 @@ import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { QRCodeSVG } from "qrcode.react";
 import { motion, AnimatePresence } from "motion/react";
-import { IconQrcode, IconTrash, IconDownload, IconFile, IconPhoto, IconFileTypePdf, IconUsers } from "@tabler/icons-react";
+import { IconQrcode, IconTrash, IconDownload, IconFile, IconPhoto, IconFileTypePdf } from "@tabler/icons-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import CountdownTimer from "@/components/ui/CountdownTimer";
 import FileUpload from "@/components/ui/FileUpload";
 import RoomCodeDisplay from "@/components/ui/RoomCodeDisplay";
 import { RoomUsersDisplay } from "@/components/ui/Avatar";
-import { formatFileSize } from "@/lib/utils";
 
 interface FileRecord {
   id: string;
@@ -130,7 +129,7 @@ export default function RoomClient({
     if (ext === "pdf") {
       return <IconFileTypePdf className="w-5 h-5 text-red-400" />;
     }
-    return <IconPhoto className="w-5 h-5 text-[#6dd07d]" />;
+    return <IconPhoto className="w-5 h-5 text-brand" />;
   };
 
   return (
@@ -190,7 +189,7 @@ export default function RoomClient({
                 <div className="bg-white p-3 sm:p-4 rounded-2xl shadow-lg">
                   <QRCodeSVG value={roomUrl} size={window.innerWidth < 640 ? 150 : 180} />
                 </div>
-                <p className="text-[#fefeff]/40 text-xs sm:text-sm">Scan to join this room</p>
+                <p className="text-primary/40 text-xs sm:text-sm">Scan to join this room</p>
               </Card>
             </motion.div>
           )}
@@ -204,7 +203,7 @@ export default function RoomClient({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
             >
-              <Card className="text-center py-6 sm:py-8 border-red-500/30 bg-red-500/[0.03]">
+              <Card className="text-center py-6 sm:py-8 border-red-500/30 bg-red-500/3">
                 <div className="space-y-2 sm:space-y-3 px-4">
                   <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-full bg-red-500/10 flex items-center justify-center">
                     <svg className="w-7 h-7 sm:w-8 sm:h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -212,7 +211,7 @@ export default function RoomClient({
                     </svg>
                   </div>
                   <p className="text-red-400 font-semibold text-base sm:text-lg">Room Expired</p>
-                  <p className="text-[#fefeff]/50 text-xs sm:text-sm">
+                  <p className="text-primary/50 text-xs sm:text-sm">
                     This room has expired. Files will be cleaned up shortly.
                   </p>
                   <Button variant="primary" onClick={() => router.push("/create")} className="mt-3 sm:mt-4 touch-manipulation">
@@ -247,7 +246,7 @@ export default function RoomClient({
           className="space-y-3 sm:space-y-4"
         >
           <div className="flex items-center justify-between">
-            <h2 className="text-xs sm:text-sm font-medium text-[#fefeff]/50 uppercase tracking-wider flex items-center gap-2">
+            <h2 className="text-xs sm:text-sm font-medium text-primary/50 uppercase tracking-wider flex items-center gap-2">
               <IconFile className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Shared Files ({files.length})
             </h2>
@@ -256,10 +255,10 @@ export default function RoomClient({
           {files.length === 0 ? (
             <Card className="text-center py-10 sm:py-12">
               <div className="flex flex-col items-center gap-3">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/[0.03] flex items-center justify-center">
-                  <IconFile className="w-7 h-7 sm:w-8 sm:h-8 text-[#fefeff]/20" />
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/3 flex items-center justify-center">
+                  <IconFile className="w-7 h-7 sm:w-8 sm:h-8 text-primary/20" />
                 </div>
-                <p className="text-[#fefeff]/30 text-xs sm:text-sm px-4">
+                <p className="text-primary/30 text-xs sm:text-sm px-4">
                   No files shared yet. Upload a file to get started.
                 </p>
               </div>
@@ -275,15 +274,15 @@ export default function RoomClient({
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    <Card className="flex items-center gap-3 sm:gap-4 py-3 sm:py-4 px-3.5 sm:px-5 hover:bg-white/[0.05] transition-all duration-200 group touch-manipulation">
-                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/[0.03] flex items-center justify-center group-hover:bg-white/[0.06] transition-colors">
+                    <Card className="flex items-center gap-3 sm:gap-4 py-3 sm:py-4 px-3.5 sm:px-5 hover:bg-white/5 transition-all duration-200 group touch-manipulation">
+                      <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/3 flex items-center justify-center group-hover:bg-white/6 transition-colors">
                         {getFileIcon(file.file_name)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[#fefeff] text-xs sm:text-sm font-medium truncate">
+                        <p className="text-primary text-xs sm:text-sm font-medium truncate">
                           {file.file_name}
                         </p>
-                        <p className="text-[#fefeff]/30 text-[10px] sm:text-xs mt-0.5">
+                        <p className="text-primary/30 text-[10px] sm:text-xs mt-0.5">
                           {new Date(file.uploaded_at).toLocaleTimeString()}
                         </p>
                       </div>
@@ -292,7 +291,7 @@ export default function RoomClient({
                           href={file.signed_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-shrink-0 p-2.5 sm:p-3 rounded-xl bg-[#6dd07d]/10 text-[#6dd07d] hover:bg-[#6dd07d]/20 hover:scale-105 transition-all duration-200 touch-manipulation"
+                          className="shrink-0 p-2.5 sm:p-3 rounded-xl bg-brand/10 text-brand hover:bg-brand/20 hover:scale-105 transition-all duration-200 touch-manipulation"
                         >
                           <IconDownload className="w-4 h-4 sm:w-5 sm:h-5" />
                         </a>

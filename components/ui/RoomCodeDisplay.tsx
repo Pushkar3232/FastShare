@@ -29,19 +29,19 @@ export default function RoomCodeDisplay({ code }: RoomCodeDisplayProps) {
 
   return (
     <div className="flex flex-col items-center gap-1.5 sm:gap-2">
-      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#fefeff]/50">
+      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-primary/50">
         Room Code
       </span>
       <button
         onClick={handleCopy}
-        className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-white/[0.03] border border-white/[0.06] rounded-xl hover:bg-white/[0.06] transition-all duration-200 cursor-pointer touch-manipulation"
+        className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-white/3 border border-white/6 rounded-xl hover:bg-white/6 transition-all duration-200 cursor-pointer touch-manipulation"
       >
-        <span className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] text-[#6dd07d] font-mono">
+        <span className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] text-brand font-mono">
           {code}
         </span>
         <svg
           className={`w-4 h-4 sm:w-5 sm:h-5 transition-all duration-200 ${
-            copied ? "text-[#6dd07d]" : "text-[#fefeff]/40 group-hover:text-[#fefeff]/70"
+            copied ? "text-brand" : "text-primary/40 group-hover:text-primary/70"
           }`}
           fill="none"
           stroke="currentColor"
@@ -64,7 +64,7 @@ export default function RoomCodeDisplay({ code }: RoomCodeDisplayProps) {
           )}
         </svg>
       </button>
-      <span className="text-[10px] sm:text-xs text-[#fefeff]/30">
+      <span className="text-[10px] sm:text-xs text-primary/30">
         {copied ? "Copied!" : "Click to copy"}
       </span>
     </div>

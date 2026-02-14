@@ -1,16 +1,21 @@
 // Setup Supabase storage bucket
 const { createClient } = require("@supabase/supabase-js");
 
-const supabase = createClient(
-  "https://ceszkugssgzglavtyfpd.supabase.co",
-  "sb_publishable_xVkDSMvcnmvg_ENY90iZfg_waQHQUm0"
-);
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!supabaseUrl || !supabaseServiceRoleKey) {
+  console.error("Error: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables are required");
+  process.exit(1);
+}
+
+const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 async function setupStorage() {
   try {
     console.log("Creating storage bucket 'rooms-storage'...");
 
-    const { data, error } = await supabase.storage.createBucket("rooms-storage", {
+    const { error } = await supabase.storage.createBucket("rooms-storage", {
       public: false,
       fileSizeLimit: 10 * 1024 * 1024, // 10MB
       allowedMimeTypes: [

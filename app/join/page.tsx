@@ -77,19 +77,19 @@ export default function JoinRoomPage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-3 sm:px-4 pt-6 sm:pt-8">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#6dd07d]/[0.04] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute -bottom-20 left-1/4 w-[260px] h-[260px] rounded-full bg-[#6dd07d]/[0.03] blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-brand/4 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-20 left-1/4 w-65 h-65 rounded-full bg-brand/3 blur-[100px] pointer-events-none" />
 
       <Card glow className="relative w-full max-w-lg space-y-6 sm:space-y-8 p-6 sm:p-10 md:p-12">
         <div className="space-y-3 sm:space-y-4 text-center">
-          <span className="inline-flex rounded-full border border-[#6dd07d]/25 bg-[#6dd07d]/10 px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-[#6dd07d]">
+          <span className="inline-flex rounded-full border border-brand/25 bg-brand/10 px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-brand">
             Enter access code
           </span>
-          <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-2xl bg-gradient-to-br from-[#6dd07d]/20 to-[#6dd07d]/5 flex items-center justify-center shadow-lg shadow-[#6dd07d]/10">
-            <IconLogin className="w-7 h-7 sm:w-8 sm:h-8 text-[#6dd07d]" stroke={2} />
+          <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-2xl bg-linear-to-br from-brand/20 to-brand/5 flex items-center justify-center shadow-lg shadow-brand/10">
+            <IconLogin className="w-7 h-7 sm:w-8 sm:h-8 text-brand" stroke={2} />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#fefeff]">Join a Room</h1>
-          <p className="text-[#fefeff]/50 text-sm sm:text-base">
+          <h1 className="text-2xl sm:text-3xl font-bold text-primary">Join a Room</h1>
+          <p className="text-primary/50 text-sm sm:text-base">
             Enter the 6-character room code to join
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function JoinRoomPage() {
               autoFocus={i === 0}
               onChange={(e) => handleInput(i, e.target.value)}
               onKeyDown={(e) => handleKeyDown(i, e)}
-              className="h-14 w-12 sm:h-16 sm:w-14 text-center text-xl sm:text-2xl font-bold font-mono bg-white/[0.03] border-2 border-white/[0.08] rounded-xl text-[#6dd07d] focus:outline-none focus:ring-2 focus:ring-[#6dd07d] focus:border-transparent hover:bg-white/[0.05] transition-all duration-200 uppercase touch-manipulation"
+              className="h-14 w-12 sm:h-16 sm:w-14 text-center text-xl sm:text-2xl font-bold font-mono bg-white/3 border-2 border-white/8 rounded-xl text-brand focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent hover:bg-white/5 transition-all duration-200 uppercase touch-manipulation"
             />
           ))}
         </div>
@@ -125,7 +125,7 @@ export default function JoinRoomPage() {
           Join Room
         </Button>
 
-        <p className="text-center text-xs sm:text-sm text-[#fefeff]/45">
+        <p className="text-center text-xs sm:text-sm text-primary/45">
           Tip: You can paste the full code and we will fill it automatically.
         </p>
 

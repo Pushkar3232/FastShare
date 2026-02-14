@@ -30,6 +30,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
 );
 Avatar.displayName = "Avatar";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface AvatarImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
 const AvatarImage = React.forwardRef<HTMLImageElement, AvatarImageProps>(
@@ -56,7 +57,7 @@ const AvatarFallback = React.forwardRef<HTMLDivElement, AvatarFallbackProps>(
       <div
         ref={ref}
         className={cn(
-          "flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-[#6dd07d] to-[#4fa85c] text-[#040204] font-semibold text-sm",
+          "flex h-full w-full items-center justify-center rounded-full bg-linear-to-br from-brand to-[#4fa85c] text-bg font-semibold text-sm",
           className
         )}
         {...props}
@@ -107,7 +108,7 @@ const AvatarGroupCount = React.forwardRef<HTMLDivElement, AvatarGroupCountProps>
         ref={ref}
         className={cn(
           "relative flex shrink-0 items-center justify-center rounded-full",
-          "bg-white/[0.08] border-2 border-[#040204] text-[#fefeff] font-medium",
+          "bg-white/8 border-2 border-bg text-primary font-medium",
           sizeClasses[size],
           className
         )}
@@ -169,8 +170,8 @@ const UserAvatar = ({ userId, name, size = "md", className }: UserAvatarProps) =
   const colorClass = stringToColor(userId);
 
   return (
-    <Avatar size={size} className={cn("border-2 border-[#040204]", className)}>
-      <AvatarFallback className={cn("bg-gradient-to-br", colorClass)}>
+    <Avatar size={size} className={cn("border-2 border-bg", className)}>
+      <AvatarFallback className={cn("bg-linear-to-br", colorClass)}>
         {initials}
       </AvatarFallback>
     </Avatar>
@@ -217,10 +218,10 @@ const RoomUsersDisplay = ({
           </AvatarGroupCount>
         )}
       </AvatarGroup>
-      <span className="text-xs sm:text-sm text-[#fefeff]/50 ml-0.5 sm:ml-1 hidden sm:inline">
+      <span className="text-xs sm:text-sm text-primary/50 ml-0.5 sm:ml-1 hidden sm:inline">
         {userCount} {userCount === 1 ? "user" : "users"}
       </span>
-      <span className="text-xs text-[#fefeff]/50 ml-0.5 sm:hidden">
+      <span className="text-xs text-primary/50 ml-0.5 sm:hidden">
         {userCount}
       </span>
     </div>

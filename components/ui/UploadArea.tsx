@@ -77,24 +77,24 @@ export default function UploadArea({
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        className={`relative w-full min-h-[200px] flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed transition-all duration-200 cursor-pointer ${
+        className={`relative w-full min-h-50 flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed transition-all duration-200 cursor-pointer ${
           disabled || uploading
-            ? "border-white/[0.06] bg-white/[0.01] cursor-not-allowed opacity-50"
+            ? "border-white/6 bg-white/1 cursor-not-allowed opacity-50"
             : dragOver
-              ? "border-[#6dd07d] bg-[#6dd07d]/[0.05] scale-[1.01]"
-              : "border-white/[0.1] bg-white/[0.02] hover:border-[#6dd07d]/50 hover:bg-white/[0.04]"
+              ? "border-brand bg-brand/5 scale-[1.01]"
+              : "border-white/10 bg-white/2 hover:border-brand/50 hover:bg-white/4"
         }`}
       >
         {uploading ? (
           <>
-            <div className="w-10 h-10 border-3 border-[#6dd07d]/30 border-t-[#6dd07d] rounded-full animate-spin" />
-            <p className="text-[#fefeff]/70 text-sm">Uploading...</p>
+            <div className="w-10 h-10 border-3 border-brand/30 border-t-brand rounded-full animate-spin" />
+            <p className="text-primary/70 text-sm">Uploading...</p>
           </>
         ) : (
           <>
-            <div className="w-14 h-14 rounded-xl bg-[#6dd07d]/10 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center">
               <svg
-                className="w-7 h-7 text-[#6dd07d]"
+                className="w-7 h-7 text-brand"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -108,10 +108,10 @@ export default function UploadArea({
               </svg>
             </div>
             <div className="text-center">
-              <p className="text-[#fefeff] font-medium">
-                Drag & drop or <span className="text-[#6dd07d]">browse</span>
+              <p className="text-primary font-medium">
+                Drag & drop or <span className="text-brand">browse</span>
               </p>
-              <p className="text-[#fefeff]/40 text-sm mt-1">
+              <p className="text-primary/40 text-sm mt-1">
                 Images & PDFs up to {formatFileSize(MAX_FILE_SIZE)}
               </p>
             </div>

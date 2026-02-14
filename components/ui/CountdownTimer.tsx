@@ -9,7 +9,7 @@ interface CountdownTimerProps {
 }
 
 export default function CountdownTimer({ expiresAt, onExpired }: CountdownTimerProps) {
-  const [timeLeft, setTimeLeft] = useState<number>(
+  const [timeLeft, setTimeLeft] = useState<number>(() =>
     new Date(expiresAt).getTime() - Date.now()
   );
 
@@ -31,7 +31,7 @@ export default function CountdownTimer({ expiresAt, onExpired }: CountdownTimerP
 
   return (
     <div className="flex flex-col items-center gap-0.5 sm:gap-1">
-      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#fefeff]/50">
+      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-primary/50">
         {isExpired ? "Expired" : "Time Left"}
       </span>
       <span
@@ -40,7 +40,7 @@ export default function CountdownTimer({ expiresAt, onExpired }: CountdownTimerP
             ? "text-red-400"
             : isUrgent
               ? "text-yellow-400 animate-pulse"
-              : "text-[#6dd07d]"
+              : "text-brand"
         }`}
       >
         {formatTimeLeft(timeLeft)}

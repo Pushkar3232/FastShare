@@ -1,6 +1,11 @@
 const { Client } = require("pg");
 
-const DATABASE_URL = `postgresql://postgres:Pushk%40r141Supa@db.ceszkugssgzglavtyfpd.supabase.co:5432/postgres`;
+const DATABASE_URL = process.env.DATABASE_URL;
+
+if (!DATABASE_URL) {
+  console.error("Error: DATABASE_URL environment variable is required");
+  process.exit(1);
+}
 
 const SQL = `
 -- Create storage bucket
