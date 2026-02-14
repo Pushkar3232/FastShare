@@ -1,0 +1,10 @@
+export const ROOM_EXPIRY_MINUTES = 30;
+export const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+export const ALLOWED_FILE_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/webp",
+  "application/pdf",
+];
+export const ROOM_CODE_LENGTH = 6;
