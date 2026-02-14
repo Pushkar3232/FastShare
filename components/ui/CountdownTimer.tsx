@@ -30,12 +30,12 @@ export default function CountdownTimer({ expiresAt, onExpired }: CountdownTimerP
   const isExpired = timeLeft <= 0;
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <span className="text-xs uppercase tracking-wider text-[#fefeff]/50">
-        {isExpired ? "Room Expired" : "Time Remaining"}
+    <div className="flex flex-col items-center gap-0.5 sm:gap-1">
+      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#fefeff]/50">
+        {isExpired ? "Expired" : "Time Left"}
       </span>
       <span
-        className={`text-3xl font-bold font-mono tracking-widest ${
+        className={`text-xl sm:text-2xl md:text-3xl font-bold font-mono tracking-wider sm:tracking-widest ${
           isExpired
             ? "text-red-400"
             : isUrgent

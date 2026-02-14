@@ -3,36 +3,33 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#040204]/80 backdrop-blur-xl border-b border-white/[0.04]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#040204]/90 backdrop-blur-xl border-b border-white/[0.04]">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative">
-            <div className="absolute inset-0 bg-[#6dd07d]/20 rounded-full blur-lg group-hover:bg-[#6dd07d]/30 transition-all duration-300" />
+          <div className="relative flex items-center">
+            <div className="absolute inset-0 bg-[#6dd07d]/10 rounded-full blur-xl group-hover:bg-[#6dd07d]/20 transition-all duration-300" />
             <Image
-              src="/logo.png"
+              src="/logo-text.png"
               alt="FastShare"
-              width={32}
-              height={32}
-              className="relative"
+              width={160}
+              height={40}
+              className="relative h-7 sm:h-9 w-auto object-contain"
               priority
             />
           </div>
-          <span className="text-[#fefeff] font-bold text-lg hidden sm:block">
-            FastShare
-          </span>
         </Link>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 sm:gap-2">
           <Link
             href="/create"
-            className="text-sm text-[#fefeff]/60 hover:text-[#6dd07d] transition-colors duration-200"
+            className="px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-[#fefeff]/70 hover:text-[#6dd07d] hover:bg-white/[0.04] rounded-lg transition-all duration-200 touch-manipulation"
           >
-            Create Room
+            Create
           </Link>
           <Link
             href="/join"
-            className="text-sm text-[#fefeff]/60 hover:text-[#6dd07d] transition-colors duration-200"
+            className="px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-[#fefeff]/70 hover:text-[#6dd07d] hover:bg-white/[0.04] rounded-lg transition-all duration-200 touch-manipulation"
           >
-            Join Room
+            Join
           </Link>
         </div>
       </div>

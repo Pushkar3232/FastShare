@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { IconLogin, IconInfoCircle } from "@tabler/icons-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 
@@ -75,24 +76,26 @@ export default function JoinRoomPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 -mt-16">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#6dd07d]/[0.04] rounded-full blur-[100px] pointer-events-none" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-3 sm:px-4 pt-6 sm:pt-8">
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#6dd07d]/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-20 left-1/4 w-[260px] h-[260px] rounded-full bg-[#6dd07d]/[0.03] blur-[100px] pointer-events-none" />
 
-      <Card glow className="relative w-full max-w-md text-center space-y-6 p-8">
-        <div className="space-y-2">
-          <div className="w-14 h-14 mx-auto rounded-xl bg-[#6dd07d]/10 flex items-center justify-center mb-4">
-            <svg className="w-7 h-7 text-[#6dd07d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-            </svg>
+      <Card glow className="relative w-full max-w-lg space-y-6 sm:space-y-8 p-6 sm:p-10 md:p-12">
+        <div className="space-y-3 sm:space-y-4 text-center">
+          <span className="inline-flex rounded-full border border-[#6dd07d]/25 bg-[#6dd07d]/10 px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-[#6dd07d]">
+            Enter access code
+          </span>
+          <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-2xl bg-gradient-to-br from-[#6dd07d]/20 to-[#6dd07d]/5 flex items-center justify-center shadow-lg shadow-[#6dd07d]/10">
+            <IconLogin className="w-7 h-7 sm:w-8 sm:h-8 text-[#6dd07d]" stroke={2} />
           </div>
-          <h1 className="text-2xl font-bold text-[#fefeff]">Join a Room</h1>
-          <p className="text-[#fefeff]/50 text-sm">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#fefeff]">Join a Room</h1>
+          <p className="text-[#fefeff]/50 text-sm sm:text-base">
             Enter the 6-character room code to join
           </p>
         </div>
 
         {/* Code input grid */}
-        <div className="flex justify-center gap-2" onPaste={handlePaste}>
+        <div className="flex justify-center gap-2 sm:gap-3" onPaste={handlePaste}>
           {code.map((char, i) => (
             <input
               key={i}
@@ -100,9 +103,14 @@ export default function JoinRoomPage() {
               type="text"
               maxLength={1}
               value={char}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck={false}
+              inputMode="text"
+              autoFocus={i === 0}
               onChange={(e) => handleInput(i, e.target.value)}
               onKeyDown={(e) => handleKeyDown(i, e)}
-              className="w-12 h-14 text-center text-2xl font-bold font-mono bg-white/[0.03] border border-white/[0.06] rounded-lg text-[#6dd07d] focus:outline-none focus:ring-2 focus:ring-[#6dd07d] focus:border-transparent transition-all duration-200 uppercase"
+              className="h-14 w-12 sm:h-16 sm:w-14 text-center text-xl sm:text-2xl font-bold font-mono bg-white/[0.03] border-2 border-white/[0.08] rounded-xl text-[#6dd07d] focus:outline-none focus:ring-2 focus:ring-[#6dd07d] focus:border-transparent hover:bg-white/[0.05] transition-all duration-200 uppercase touch-manipulation"
             />
           ))}
         </div>
@@ -112,13 +120,20 @@ export default function JoinRoomPage() {
           loading={loading}
           disabled={fullCode.length !== 6}
           size="lg"
-          className="w-full"
+          className="w-full text-base py-4 touch-manipulation"
         >
           Join Room
         </Button>
 
+        <p className="text-center text-xs sm:text-sm text-[#fefeff]/45">
+          Tip: You can paste the full code and we will fill it automatically.
+        </p>
+
         {error && (
-          <p className="text-red-400 text-sm">{error}</p>
+          <div className="flex items-center justify-center gap-2 text-red-400 text-sm">
+            <IconInfoCircle className="w-4 h-4" />
+            {error}
+          </div>
         )}
       </Card>
     </div>

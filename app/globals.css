@@ -27,14 +27,42 @@
   border-radius: 3px;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   background: #040204;
   color: #fefeff;
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+  overscroll-behavior-y: none;
 }
 
 ::selection {
   background-color: rgba(109, 208, 125, 0.3);
   color: #fefeff;
+}
+
+/* Better mobile tap highlighting */
+* {
+  -webkit-tap-highlight-color: rgba(109, 208, 125, 0.1);
+}
+
+/* Smooth transitions for mobile interactions */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Improved touch interactions */
+button, 
+a, 
+[role="button"],
+.touch-manipulation {
+  touch-action: manipulation;
 }

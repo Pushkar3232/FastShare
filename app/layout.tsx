@@ -13,8 +13,21 @@ export const metadata: Metadata = {
   description:
     "Safe, temporary file sharing for public computers. No login required. Create a room, share files, auto-delete after expiry.",
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: "#040204",
 };
 
 export default function RootLayout({
@@ -26,7 +39,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${inter.variable} antialiased bg-[#040204] text-[#fefeff]`}>
         <Navbar />
-        <main className="pt-16 min-h-screen">{children}</main>
+        <main className="pt-14 sm:pt-16 min-h-screen">{children}</main>
       </body>
     </html>
   );
