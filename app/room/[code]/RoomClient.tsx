@@ -132,6 +132,40 @@ export default function RoomClient({
     return <IconPhoto className="w-5 h-5 text-brand" />;
   };
 
+  const handleDownload = useCallback(async (file: FileRecord) => {
+    try {
+      if (!file.signed_url) {
+        alert("File URL not available");
+        return;
+      }
+
+      // Fetch the file from the signed URL
+      const response = await fetch(file.signed_url);
+      if (!response.ok) {
+        throw new Error("Failed to download file");
+      }
+
+      // Convert response to blob
+      const blob = await response.blob();
+
+      // Create a temporary URL for the blob
+      const url = window.URL.createObjectURL(blob);
+
+      // Create a temporary anchor element and trigger download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = file.file_name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Clean up the temporary URL
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Download failed");
+    }
+  }, []);
+
   return (
     <div className="min-h-screen px-3 sm:px-4 py-6 sm:py-8">
       <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6">
@@ -287,14 +321,12 @@ export default function RoomClient({
                         </p>
                       </div>
                       {file.signed_url && (
-                        <a
-                          href={file.signed_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0 p-2.5 sm:p-3 rounded-xl bg-brand/10 text-brand hover:bg-brand/20 hover:scale-105 transition-all duration-200 touch-manipulation"
+                        <button
+                          onClick={() => handleDownload(file)}
+                          className="shrink-0 p-2.5 sm:p-3 rounded-xl bg-brand/10 text-brand hover:bg-brand/20 hover:scale-105 transition-all duration-200 touch-manipulation cursor-pointer"
                         >
                           <IconDownload className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </a>
+                        </button>
                       )}
                     </Card>
                   </motion.div>
