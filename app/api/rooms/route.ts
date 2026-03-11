@@ -38,7 +38,7 @@ export async function POST() {
     if (error) {
       console.error("Supabase error:", error);
       return NextResponse.json(
-        { error: "Failed to create room" },
+        { error: error.message || "Failed to create room" },
         { status: 500 }
       );
     }

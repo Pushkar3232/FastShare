@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import {
   IconPlus,
   IconLogin,
@@ -7,6 +8,20 @@ import {
   IconLock,
   IconClock,
 } from "@tabler/icons-react";
+
+export const metadata: Metadata = {
+  title: "FastShare - Fast File Sharing APSIT | Create & Share Instantly",
+  description:
+    "Instant file sharing without login or registration. Create a secure room, share files with QR codes, and auto-delete after 30 minutes. Trusted by APSIT students and Pushkar Shinde.",
+  keywords: [
+    "FastShare",
+    "Fast Share APSIT",
+    "FastShare Pushkar Shinde",
+    "create file sharing room",
+    "instant file transfer",
+    "secure room creation",
+  ],
+};
 
 export default function Home() {
   return (

@@ -76,6 +76,27 @@ export default function RoomClient({
     return () => clearInterval(interval);
   }, [room.room_code, expired]);
 
+  // Send heartbeat every 30 seconds to keep room active
+  useEffect(() => {
+    if (expired) return;
+
+    const heartbeat = async () => {
+      try {
+        await fetch(`/api/rooms/${room.room_code}/heartbeat`, {
+          method: "POST",
+        });
+      } catch {
+        // Silently fail heartbeat
+      }
+    };
+
+    // Send initial heartbeat
+    heartbeat();
+
+    const interval = setInterval(heartbeat, 30000);
+    return () => clearInterval(interval);
+  }, [room.room_code, expired]);
+
   const handleFileSelect = useCallback(
     async (file: File) => {
       if (expired) return;
@@ -118,6 +139,11 @@ export default function RoomClient({
 
   const handleExpired = useCallback(() => {
     setExpired(true);
+    
+    // Trigger cleanup on the server
+    fetch("/api/cleanup", { method: "POST" }).catch((err) => {
+      console.warn("Failed to trigger cleanup:", err);
+    });
   }, []);
 
   const roomUrl = typeof window !== "undefined"

@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS public.rooms (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   room_code text NOT NULL UNIQUE,
   created_at timestamptz NOT NULL DEFAULT now(),
-  expires_at timestamptz NOT NULL
+  expires_at timestamptz NOT NULL,
+  last_activity timestamptz DEFAULT now()
 );
 
 -- Create files table
@@ -34,6 +35,9 @@ CREATE INDEX IF NOT EXISTS idx_files_room_id ON public.files(room_id);
 -- Create index for finding expired rooms
 CREATE INDEX IF NOT EXISTS idx_rooms_expires_at ON public.rooms(expires_at);
 
+-- Create index for finding inactive rooms
+CREATE INDEX IF NOT EXISTS idx_rooms_last_activity ON public.rooms(last_activity);
+
 -- Enable Row Level Security (but allow all for anon key — public app)
 ALTER TABLE public.rooms ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.files ENABLE ROW LEVEL SECURITY;
@@ -48,6 +52,13 @@ END $$;
 DO $$ BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow all on files') THEN
     CREATE POLICY "Allow all on files" ON public.files FOR ALL USING (true) WITH CHECK (true);
+  END IF;
+END $$;
+
+-- Add last_activity column if it doesn't exist (for existing databases)
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'rooms' AND column_name = 'last_activity') THEN
+    ALTER TABLE public.rooms ADD COLUMN last_activity timestamptz DEFAULT now();
   END IF;
 END $$;
 `;

@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FastShare",
+  "alternateName": ["Fast Share APSIT", "FastShare Pushkar Shinde"],
+  "description": "Fast, secure, and temporary file sharing application for college labs without requiring login or registration",
+  "applicationCategory": "UtilityApplication",
+  "url": "https://fastshare.app",
+  "author": {
+    "@type": "Person",
+    "name": "Pushkar Shinde",
+    "url": "https://fastshare.app"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availabilityStarts": "2024-01-01",
+    "availability": "https://schema.org/InStock"
+  },
+  "operatingSystem": "web",
+  "browserRequirements": "Requires JavaScript enabled",
+  "softwareVersion": "1.0.0",
+  "downloadUrl": "https://fastshare.app",
+  "featureList": [
+    "Instant room creation",
+    "No login required",
+    "Auto-delete files after 30 minutes",
+    "Secure file sharing",
+    "QR code sharing",
+    "Mobile optimized"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "100"
+  },
+  "inLanguage": "en",
+  "isAccessibleForFree": true
+}
